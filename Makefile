@@ -34,7 +34,7 @@ $(NAME):	$(OBJ)
 all:		$(NAME)
 
 clean:
-			@$(RM) $(OBJ)
+			@$(RM) ./obj
 			@echo	"$(YELLOW)Obejct files deleted!$(DEFAULT)"
 
 fclean:		clean
