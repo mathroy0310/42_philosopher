@@ -6,7 +6,7 @@
 #    By: maroy <maroy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/18 17:31:16 by maroy             #+#    #+#              #
-#    Updated: 2023/06/27 18:05:53 by maroy            ###   ########.fr        #
+#    Updated: 2023/07/21 20:36:03 by maroy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCPATH			= $(addprefix $(SRCPATH_DIR)/, $(SRCPATH_SRC))
 OBJ 			= $(patsubst $(SRCPATH_DIR)%.c,obj/%.o,$(SRCPATH))
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -pthread #-fsanitize=thread
+CFLAGS		= -Wall -Wextra -Werror -pthread -Ofast #-g #-fsanitize=thread
 RM			= rm -rf
 
 obj/%.o: $(SRCPATH_DIR)%.c  $(HEADER)

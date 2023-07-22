@@ -6,13 +6,13 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:04:57 by maroy             #+#    #+#             */
-/*   Updated: 2023/06/27 12:56:42 by maroy            ###   ########.fr       */
+/*   Updated: 2023/07/21 20:54:15 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	check_options(t_sim *sim)
+int8_t	check_options(t_sim *sim)
 {
 	if (sim->nb_philo < 1 || sim->time_to_die < 1 || sim->time_to_eat < 1
 		|| sim->time_to_sleep < 1)
@@ -22,15 +22,16 @@ int	check_options(t_sim *sim)
 	return (OK);
 }
 
-int	init_options(t_sim *sim, char *argv[], int argc)
+int8_t	init_options(t_sim *sim, char *argv[], int argc)
 {
-	sim->nb_philo = ft_atoi(argv[1]);
-	sim->time_to_die = ft_atoi(argv[2]);
-	sim->time_to_eat = ft_atoi(argv[3]);
-	sim->time_to_sleep = ft_atoi(argv[4]);
+	sim->is_done = KO;
+	sim->nb_philo = ft_atol(argv[1]);
+	sim->time_to_die = ft_atol(argv[2]);
+	sim->time_to_eat = ft_atol(argv[3]);
+	sim->time_to_sleep = ft_atol(argv[4]);
 	if (argc == 6)
 	{
-		sim->must_eat = ft_atoi(argv[5]);
+		sim->must_eat = ft_atol(argv[5]);
 		if (sim->must_eat < 1)
 			return (error_print(ERROR_MUST_EAT));
 	}
@@ -40,12 +41,14 @@ int	init_options(t_sim *sim, char *argv[], int argc)
 	return (check_options(sim));
 }
 
-int	init_mutex(t_sim *sim)
+int8_t	init_mutex(t_sim *sim)
 {
-	int i;
+	int	i;
 
 	if (pthread_mutex_init(&(sim->breaker), NULL) != 0)
 		return (error_print(ERROR_MUTEX_BREAKER));
+	if (pthread_mutex_init(&(sim->done), NULL) != 0)
+		return (error_print(ERROR_MUTEX_DONE));
 	if (pthread_mutex_init(&(sim->speaker), NULL) != 0)
 		return (error_print(ERROR_MUTEX_SPEAKER));
 	i = -1;
@@ -55,12 +58,12 @@ int	init_mutex(t_sim *sim)
 	return (OK);
 }
 
-int	init_philos(t_sim *sim, t_philo *philo)
+int8_t	init_philos(t_sim *sim, t_philo *philo)
 {
 	int	i;
 
 	if (gettimeofday(&sim->time_start, NULL) != 0)
-		return (1);
+		return (KO);
 	i = 0;
 	while (i < sim->nb_philo)
 	{
