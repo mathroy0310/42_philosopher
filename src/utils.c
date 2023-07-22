@@ -6,11 +6,11 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:21:09 by maroy             #+#    #+#             */
-/*   Updated: 2023/06/21 18:55:17 by maroy            ###   ########.fr       */
+/*   Updated: 2023/07/21 20:42:51 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../philo.h"
+#include "../philo.h"
 
 static int	number(long x, int sign)
 {
@@ -21,7 +21,7 @@ static int	number(long x, int sign)
 	return (0);
 }
 
-int	ft_atoi(const char *s)
+int	ft_atol(const char *s)
 {
 	int			sign;
 	long long	x;
@@ -49,12 +49,11 @@ int	ft_atoi(const char *s)
 	return (number(x, sign));
 }
 
-int error_print(char *error_message)
+int8_t	error_print(char *error_message)
 {
-    printf("%s", error_message);
-    return(EXIT_FAILURE);
+	printf("%s", error_message);
+	return (KO);
 }
-
 
 unsigned long	time_in_ms(t_timeval time)
 {
