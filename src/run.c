@@ -6,7 +6,7 @@
 /*   By: maroy <maroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:39 by maroy             #+#    #+#             */
-/*   Updated: 2023/07/21 21:03:44 by maroy            ###   ########.fr       */
+/*   Updated: 2023/07/22 15:38:41 by maroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,22 @@ static int8_t	philo_eat(t_sim *sim, t_philo *philo)
 {
 	pthread_mutex_lock(&sim->forks[philo->right_fork]);
 	if (philo_speak(sim, philo->id, "has taken a fork") == KO)
+	{
+		pthread_mutex_unlock(&sim->forks[philo->right_fork]);
 		return (KO);
+	}
 	pthread_mutex_lock(&sim->forks[philo->left_fork]);
 	if (philo_speak(sim, philo->id, "has taken a fork") == KO)
+	{
+		pthread_mutex_unlock(&sim->forks[philo->left_fork]);
 		return (KO);
+	}
 	pthread_mutex_lock(&sim->breaker);
 	if (philo_speak(sim, philo->id, "is eating") == KO)
+	{
+		pthread_mutex_unlock(&sim->breaker);
 		return (KO);
+	}
 	philo->eat_count++;
 	gettimeofday(&philo->last_eaten, NULL);
 	if (philo->eat_count == sim->must_eat)
