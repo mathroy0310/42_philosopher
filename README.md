@@ -19,7 +19,7 @@ Pour utiliser ce projet, suivez les étapes suivantes :
 Pour lancer la simulation des philosophes, exécutez la commande suivante :
 
 ```
-./philosopher [nombre_de_philosophes] [temps_de_mange] [temps_de_pense] [nombre_de_repas]
+./philo [nombre_de_philosophes] [temps_de_mange] [temps_de_pense] [nombre_de_repas]
 ```
 
 - `nombre_de_philosophes` : le nombre de philosophes autour de la table.
@@ -30,7 +30,7 @@ Pour lancer la simulation des philosophes, exécutez la commande suivante :
 Par exemple :
 
 ```
-./philosopher 5 100 200 3
+./philo 5 100 200 3
 ```
 
 La simulation démarrera avec 5 philosophes autour de la table. Chaque philosophe prendra environ 100 millisecondes pour manger, 200 millisecondes pour penser, et ils devront tous manger 3 repas avant que la simulation ne se termine.
@@ -40,7 +40,7 @@ La simulation démarrera avec 5 philosophes autour de la table. Chaque philosoph
 Voici un exemple d'utilisation du programme Philosopher :
 
 ```bash
-$ ./philosopher 5 100 200 3
+$ ./philo 5 100 200 3
 ```
 
 La simulation des 5 philosophes démarrera, et vous pourrez observer leur comportement en train de manger et de penser.
