@@ -47,7 +47,7 @@ La simulation des 5 philosophes démarrera, et vous pourrez observer leur compor
 
 ## Ressources
 
-- [Documentation de l'école 42](https://cdn.intra.42.fr/pdf/pdf/66945/fr.subject.pdf)
+- [fr.subject.pdf](https://cdn.intra.42.fr/pdf/pdf/66945/fr.subject.pdf)
 
 ## Auteur
 
